@@ -1,1 +1,1 @@
-## Shopping Cart with React JS & Stripe Payment Gateway
+## Shopping Cart with React JS, Bootstrap & Stripe Payment Gateway
