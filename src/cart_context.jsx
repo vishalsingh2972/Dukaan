@@ -69,3 +69,5 @@ export function CartProvider({children}) {
     <cart_context.Provider value={contextValue}>
       {children}
     </cart_context.Provider>
+  )
+}
