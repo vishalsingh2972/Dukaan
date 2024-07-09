@@ -3,7 +3,7 @@
 // general context or universal ---> features like addtocart, removefromcart.... that need to be available throughout the app 
 // `Provider` component ---> gives your React app access to all the things in your context
 import { createContext, useState } from "react";
-import { productsArray } from "./products_store";
+import { productsArray, getProductData } from "./products_store";
 
 // initializing functions in context
 export const cart_context = createContext({
@@ -20,7 +20,7 @@ export function CartProvider({children}) {
 
   const [cartProducts, setCartProducts] = useState([]);
 
-  // in our cart we are going to store 2 things: id of the item, quantity of the item {id:1, quantity:3}
+  // in our cart we are going to store 2 things: id of the item, quantity of the item, so in cartProducts "array" each "(product)" will look something like this ---> {id:1, quantity:3}
   const getProductQuantity = (id) => {
     const quantity = cartProducts.find((product) => product.id === id)?.quantity;
     
@@ -56,6 +56,50 @@ export function CartProvider({children}) {
         )
       )
     }
+  }
+
+  const removeOneItemFromCart = (id) => {
+    const quantity = getProductQuantity(id);
+
+    if (quantity === 1){ //only 1 product present in cart case ---> so we simple remove that 1 item
+      deleteFromCart(id);
+    }
+    else{
+      setCartProducts(
+        cartProducts.map(
+          (product) => {
+            product.id === id ? { ...product, quantity: product.quantity - 1} : product;
+          }
+        )
+      )
+    }
+    //another condition edge case: when 'quantity' === 0, do nothing as cart value shouldn't go in negative as by default 'quantity' === 0 will also go inside else{...}
+  }
+
+  //fully remove item with this 'id'
+  const deleteFromCart = (id) => {
+    //here it starts with an empty array [] and if an object meets a condition then it is going to add the object to the array
+    // Eg. I pass in [product1, product2, product3] and want to remove product2, so [product1, product2, product3].filter ---> [product1, product3] (after filtering filled in new array)
+    setCartProducts(
+      cartProducts => cartProducts.filter((product) => {
+        return product.id != id; //if product.id != id is true 'product' gets added to new array, if product.id != id is false 'product' is not added to new array
+      }) 
+    )
+  }
+
+  const getTotalCost = () => {
+    let totalCost = 0;
+
+    cartProducts.map((product) => {
+      const productData = getProductData(product.id);
+
+      //Direct attack
+      totalCost += (product.quantity)*(productData.price);
+
+      //Long method
+      // const quantity = getProductQuantity(product.id);
+      // totalCost = totalCost + (quantity)*(productData.price); or // totalCost += (quantity)*(productData.price);
+    })
   }
 
   // actual place where initiated context values are stored and later (as seen below inside return) made available throughout the application via the provider
