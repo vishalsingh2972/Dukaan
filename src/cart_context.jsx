@@ -56,7 +56,6 @@ export function CartProvider({children}) {
     }
   }
 
-
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
