@@ -5,6 +5,7 @@
 import { createContext, useState } from "react";
 import { productsArray } from "./products_store";
 
+// initializing functions in context
 export const cart_context = createContext({
   items: [],
   getProductQuantity: () => {},
@@ -14,6 +15,7 @@ export const cart_context = createContext({
   getTotalCost: () => {}
 })
 
+// Provider function
 export function CartProvider({children}) {
 
   const [cartProducts, setCartProducts] = useState([]);
@@ -21,7 +23,7 @@ export function CartProvider({children}) {
   // in our cart we are going to store 2 things: id of the item, quantity of the item {id:1, quantity:3}
   const getProductQuantity = (id) => {
     const quantity = cartProducts.find((product) => product.id === id)?.quantity;
-
+    
     if (quantity === undefined){
       return 0;
     }
@@ -56,6 +58,7 @@ export function CartProvider({children}) {
     }
   }
 
+  // actual place where initiated context values are stored and later (as seen below inside return) made available throughout the application via the provider
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
