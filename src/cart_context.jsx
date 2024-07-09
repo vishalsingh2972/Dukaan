@@ -8,8 +8,8 @@ import { productsArray } from "./products_store";
 export const cart_context = createContext({
   items: [],
   getProductQuantity: () => {},
-  addItemToCart: () => {},
-  removeItemFromCart: () => {},
+  addOneItemToCart: () => {},
+  removeOneItemFromCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {}
 })
@@ -21,8 +21,8 @@ export function CartProvider({children}) {
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
-    addItemToCart,
-    removeItemFromCart,
+    addOneItemToCart,
+    removeOneItemFromCart,
     deleteFromCart,
     getTotalCost
   }
