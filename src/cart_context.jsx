@@ -50,9 +50,9 @@ export function CartProvider({children}) {
     else{ //product is in cart case
       setCartProducts(
         cartProducts.map(
-          (product) => {
-            product.id === id ? { ...product, quantity: product.quantity + 1} : product;
-          }
+          (product) => (
+            product.id === id ? { ...product, quantity: product.quantity + 1} : product
+          )
         )
       )
     }
@@ -67,9 +67,9 @@ export function CartProvider({children}) {
     else{
       setCartProducts(
         cartProducts.map(
-          (product) => {
-            product.id === id ? { ...product, quantity: product.quantity - 1} : product;
-          }
+          (product) => (
+            product.id === id ? { ...product, quantity: product.quantity - 1} : product
+          )
         )
       )
     }
