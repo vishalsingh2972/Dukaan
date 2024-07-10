@@ -12,6 +12,7 @@ const Product_Card = (props) => { //props.product is the product we are selling
   // console.log(`bittu ${cart.getTotalCost}`);
   const productQuantity = cart.getProductQuantity(product.id);
   console.log(cart.items);
+  // console.log(cart.items.length);
   
   return (
     <Card>
