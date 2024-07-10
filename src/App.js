@@ -11,7 +11,7 @@ import { CartProvider } from './cart_context';
 
 function App() {
   return (
-    <CartProvider>  {/* Anything wrapped inside the <CartProvider>...</CartProvider> component will have will have access to the functions defined inside the CartProvider component */}
+    <CartProvider>  {/* Anything wrapped inside the <CartProvider>...</CartProvider> component will have access to all the functions defined inside the CartProvider component */}
       <Container>
         <Navbar_Component/>
 
