@@ -11,6 +11,23 @@ const Navbar_Component = () => {
   const handleClose_funtion = () => setShow(false);
   const handleShow_function = () => setShow(true);
 
+  const checkout = async () => {
+    await fetch('http://localhost:4000/checkout',{
+                method: "POST",
+                headers: {
+                  'Content-type': "application/json"
+                },
+                body: JSON.stringify({items: cart.items})
+    }).then((response) => {
+        return response.json();
+    }).then((response) => {
+        if(response.url){
+          window.location.assign(response.url); // Forwarding user to Stripe
+          // navigate(response.url);
+        }
+    })
+  }
+
   //function for count of total products added
   const productCount = cart.items.reduce((sum, product /*(item)*/ ) => sum + product.quantity, 0); //the 0 at the end is the initial value for the sum accumulator in the reduce function. i.e telling start with sum = 0
 
@@ -40,7 +57,7 @@ const Navbar_Component = () => {
               ))}
               <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
 
-              <Button variant="success">
+              <Button variant="success" onClick={checkout}>
                 Checkout
               </Button>
             </>
