@@ -2,11 +2,13 @@ import { Button, Container, Navbar, Modal } from "react-bootstrap"
 import { useState, useContext } from "react"
 import { cart_context } from "../cart_context";
 import Cart_Product from "./Cart_Product";
+import { useNavigate } from "react-router-dom";
 
 const Navbar_Component = () => {
 
   const [show, setShow] = useState(false);
   const cart = useContext(cart_context);
+  const navigate = useNavigate();
 
   const handleClose_funtion = () => setShow(false);
   const handleShow_function = () => setShow(true);
@@ -23,7 +25,7 @@ const Navbar_Component = () => {
     }).then((response) => {
         if(response.url){
           window.location.assign(response.url); // Forwarding user to Stripe
-          // navigate(response.url);
+          // navigate(response.url); // Forwarding user to Stripe using useNavigate hook
         }
     })
   }
