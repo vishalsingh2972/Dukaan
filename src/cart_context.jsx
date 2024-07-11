@@ -100,6 +100,7 @@ export function CartProvider({children}) {
       // const quantity = getProductQuantity(product.id);
       // totalCost = totalCost + (quantity)*(productData.price); or // totalCost += (quantity)*(productData.price);
     })
+    return totalCost;
   }
 
   // actual place where initiated context values are stored and later (as seen below inside return) made available throughout the application via the provider
@@ -111,6 +112,7 @@ export function CartProvider({children}) {
     deleteFromCart,
     getTotalCost
   }
+  
   return(
     <cart_context.Provider value={contextValue}>
       {children}

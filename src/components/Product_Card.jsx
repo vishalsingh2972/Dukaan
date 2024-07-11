@@ -28,7 +28,7 @@ const Product_Card = (props) => { //props.product is the product we are selling
                 <Button sm="6" onClick={() => cart.removeOneItemFromCart(product.id)} className="mx-2">-</Button>
               </Col>
             </Form>
-            <Button variant="danger" onClick={() => cart.deleteFromCart(product.id)}className="my-2">Delete item from cart</Button>
+            <Button variant="danger" onClick={() => cart.deleteFromCart(product.id)}className="my-2">Delete from Cart</Button>
           </>
           : 
           <Button variant="primary" onClick={() => cart.addOneItemToCart(product.id)}>Add to Cart</Button>
