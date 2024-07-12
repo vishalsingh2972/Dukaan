@@ -1,4 +1,4 @@
-## Shopping Cart with React, Bootstrap & Stripe Payment Gateway
+## Shopping Cart built with React, Bootstrap & Stripe Payment Gateway
 
 ![image](https://github.com/vishalsingh2972/dukaan/assets/106817047/223b323a-eedf-422d-8e0e-bf8aaeea8b3b)
 
